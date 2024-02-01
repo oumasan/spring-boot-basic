@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class UserEntity {
 
-    private Integer number = null;
+    private Integer id = null;
     private String firstName = "";
     private String lastName = "";
     private String address = "";
@@ -12,12 +12,12 @@ public class UserEntity {
 
     private LocalDate updateDate = null;
 
-    public Integer getNumber() {
-        return number;
+    public Integer getId() {
+        return id;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstName() {

@@ -1,21 +1,26 @@
 package com.example.springbootbase.model;
 
+import java.time.LocalDate;
+
 /**
  * ユーザー情報モデル
  */
 public class UserModel {
 
-    private Integer number = null;
+    private Integer id = null;
     private String firstName = "";
     private String lastName = "";
     private String address = "";
+    private LocalDate createDate = null;
 
-    public Integer getNumber() {
-        return number;
+    private LocalDate updateDate = null;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setNumber(Integer number) {
-        this.number = number;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -40,6 +45,22 @@ public class UserModel {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public LocalDate getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDate createDate) {
+        this.createDate = createDate;
+    }
+
+    public LocalDate getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDate updateDate) {
+        this.updateDate = updateDate;
     }
 
 }

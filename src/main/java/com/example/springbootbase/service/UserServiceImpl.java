@@ -1,6 +1,7 @@
 package com.example.springbootbase.service;
 
 import com.example.springbootbase.entity.UserEntity;
+import com.example.springbootbase.model.BaseResponseModel;
 import com.example.springbootbase.model.UserModel;
 import com.example.springbootbase.repository.UsersMapper;
 import org.modelmapper.ModelMapper;
@@ -19,6 +20,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UsersMapper usersMapper;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     /**
      * ユーザー情報全取得
      * @return ユーザーリスト
@@ -26,6 +30,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserModel> getUsers() {
         List<UserEntity> userEntityList = usersMapper.getAll();
-        return new ModelMapper().map(userEntityList , new TypeToken<List<UserModel>>() {}.getType());
+        return modelMapper.map(userEntityList , new TypeToken<List<UserModel>>() {}.getType());
+    }
+
+    @Override
+    public BaseResponseModel createUser(UserModel user) {
+        UserEntity userEntity = modelMapper.map(user , UserEntity.class);
+        usersMapper.insert(userEntity);
+        return new BaseResponseModel();
     }
 }
