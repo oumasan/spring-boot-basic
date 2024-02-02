@@ -39,4 +39,12 @@ public class UserServiceImpl implements UserService {
         usersMapper.insert(userEntity);
         return new BaseResponseModel();
     }
+
+    @Override
+    public BaseResponseModel updateUser(UserModel user) {
+        // TODO 排他制御
+        UserEntity userEntity = modelMapper.map(user , UserEntity.class);
+        usersMapper.update(userEntity);
+        return new BaseResponseModel();
+    }
 }

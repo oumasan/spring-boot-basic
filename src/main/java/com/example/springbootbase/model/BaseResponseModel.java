@@ -6,6 +6,7 @@ package com.example.springbootbase.model;
 public class BaseResponseModel {
     private Boolean result = true;
     private String errorCode = "";
+    private String errorMessage = "";
 
     public BaseResponseModel() {
     }
@@ -29,5 +30,13 @@ public class BaseResponseModel {
 
     public void setErrorCode(String errorCode) {
         this.errorCode = errorCode;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
     }
 }

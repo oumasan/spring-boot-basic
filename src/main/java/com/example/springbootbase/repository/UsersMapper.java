@@ -21,4 +21,6 @@ public interface UsersMapper {
     List<UserEntity> getAll();
 
     int insert(UserEntity user);
+
+    int update(UserEntity user);
 }

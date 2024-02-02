@@ -7,16 +7,9 @@
         SELECT * FROM users;
     </select>
     <insert id="insert" parameterType="com.example.springbootbase.entity.UserEntity">
-        INSERT INTO
-            (
-                first_name,
-                last_name,
-                address
-                )
-            VALUES (
-                #{firstName},
-                #{lastName},
-                #{address}
-            )
+        INSERT INTO users (first_name, last_name, address) VALUES (#{firstName}, #{lastName}, #{address});
     </insert>
+    <update id="update" parameterType="com.example.springbootbase.entity.UserEntity">
+        UPDATE users SET first_name = #{firstName}, last_name = #{lastName}, address = #{address} WHERE id = #{id};
+    </update>
 </mapper>

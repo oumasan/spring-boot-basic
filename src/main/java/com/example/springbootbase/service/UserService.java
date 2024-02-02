@@ -11,4 +11,5 @@ import java.util.List;
 public interface UserService {
     List<UserModel> getUsers();
     BaseResponseModel createUser(UserModel user);
+    BaseResponseModel updateUser(UserModel user);
 }

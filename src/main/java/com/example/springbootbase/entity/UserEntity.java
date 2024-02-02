@@ -1,6 +1,7 @@
 package com.example.springbootbase.entity;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class UserEntity {
 
@@ -8,9 +9,9 @@ public class UserEntity {
     private String firstName = "";
     private String lastName = "";
     private String address = "";
-    private LocalDate createDate = null;
+    private LocalDateTime createDate = null;
 
-    private LocalDate updateDate = null;
+    private LocalDateTime updateDate = null;
 
     public Integer getId() {
         return id;
@@ -44,19 +45,19 @@ public class UserEntity {
         this.address = address;
     }
 
-    public LocalDate getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDate createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
-    public LocalDate getUpdateDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
 
-    public void setUpdateDate(LocalDate updateDate) {
+    public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
 }
