@@ -1,2 +1,7 @@
 # spring-boot-basic
-- A template repository for building RestApi with SpringBoot
+
+## SpringBootを使用したREST APIの雛形
+- REST API実装サンプル
+- Mybatisサンプル
+- バリデーションサンプル
+
