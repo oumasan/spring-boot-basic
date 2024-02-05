@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public List<UserModel> getUsers() {
-        List<UserEntity> userEntityList = usersMapper.getAll();
+        List<UserEntity> userEntityList = usersMapper.findAll();
         return modelMapper.map(userEntityList , new TypeToken<List<UserModel>>() {}.getType());
     }
 

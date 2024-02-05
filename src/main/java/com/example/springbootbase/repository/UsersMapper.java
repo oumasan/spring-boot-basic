@@ -1,5 +1,6 @@
 package com.example.springbootbase.repository;
 
+import com.example.springbootbase.entity.AuthEntity;
 import com.example.springbootbase.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ public interface UsersMapper {
      * ユーザー情報全取得
      * @return ユーザーリスト
      */
-    List<UserEntity> getAll();
+    List<UserEntity> findAll();
 
     int insert(UserEntity user);
 
