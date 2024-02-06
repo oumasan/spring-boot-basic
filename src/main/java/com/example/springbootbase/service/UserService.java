@@ -12,4 +12,5 @@ public interface UserService {
     List<UserModel> getUsers();
     BaseResponseModel createUser(UserModel user);
     BaseResponseModel updateUser(UserModel user);
+    BaseResponseModel deleteUser(UserModel user);
 }

@@ -4,6 +4,7 @@ import com.example.springbootbase.entity.UserEntity;
 import com.example.springbootbase.model.BaseResponseModel;
 import com.example.springbootbase.model.UserModel;
 import com.example.springbootbase.repository.UsersMapper;
+import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,13 @@ public class UserServiceImpl implements UserService {
         // TODO 排他制御
         UserEntity userEntity = modelMapper.map(user , UserEntity.class);
         usersMapper.update(userEntity);
+        return new BaseResponseModel();
+    }
+
+    @Override
+    public BaseResponseModel deleteUser(UserModel user) {
+        UserEntity userEntity = modelMapper.map(user, UserEntity.class);
+        usersMapper.delete(userEntity);
         return new BaseResponseModel();
     }
 }

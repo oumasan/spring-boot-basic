@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,6 +17,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
@@ -23,23 +25,30 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         // CORSの設定を有効化...(1)
-//        http.cors((cors) -> cors
-//                .configurationSource(corsConfigurationSource()));
+        http.cors((cors) -> cors
+                .configurationSource(corsConfigurationSource()));
+        // /login以外を全て認証ありアクセスに
         http.csrf((csrf) -> csrf.disable()).authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/login").permitAll()
                 .anyRequest().authenticated());
-        // (3)
         http.addFilterBefore(new AuthorizeFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
-    // (4)
+    /**
+     * パスワードをハッシュ化
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
 
-    // (5)
+    /**
+     * UserDetailsServiceを使用してユーザー情報を取得し、パスワードの照合を行うための認証プロバイダー
+     * @param loginUserDetailsService
+     * @return 認証プロバイダー
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider(LoginUserDetailsService loginUserDetailsService) {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -48,7 +57,10 @@ public class SecurityConfig {
         return provider;
     }
 
-    // CORSの設定
+    /**
+     * CORSの設定
+     * @return
+     */
     private CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);

@@ -12,4 +12,7 @@
     <update id="update" parameterType="com.example.springbootbase.entity.UserEntity">
         UPDATE users SET first_name = #{firstName}, last_name = #{lastName}, address = #{address} WHERE id = #{id};
     </update>
+    <delete id="delete" parameterType="com.example.springbootbase.entity.UserEntity">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
 </mapper>

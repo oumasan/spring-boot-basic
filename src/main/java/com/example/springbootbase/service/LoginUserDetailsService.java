@@ -1,21 +1,20 @@
 package com.example.springbootbase.service;
 
-import com.example.springbootbase.controller.ErrorHandlingController;
 import com.example.springbootbase.entity.AuthEntity;
-import com.example.springbootbase.entity.UserEntity;
 import com.example.springbootbase.repository.AuthMapper;
-import com.example.springbootbase.repository.UsersMapper;
 import com.example.springbootbase.security.LoginUserDetails;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
 
 @Service
 public class LoginUserDetailsService implements UserDetailsService {
@@ -33,6 +32,6 @@ public class LoginUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("username not found.");
         }
         logger.info("username:" + username + " found ");
-        return new LoginUserDetails(auth);
+        return new LoginUserDetails(auth, auth.getRole());
     }
 }

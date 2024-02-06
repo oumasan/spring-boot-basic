@@ -6,6 +6,7 @@ public class AuthEntity {
     Integer id;
     String userName;
     String password;
+    String role;
 
     public String getRole() {
         return role;
@@ -14,8 +15,6 @@ public class AuthEntity {
     public void setRole(String role) {
         this.role = role;
     }
-
-    String role;
 
     public Integer getId() {
         return id;

@@ -24,4 +24,6 @@ public interface UsersMapper {
     int insert(UserEntity user);
 
     int update(UserEntity user);
+
+    int delete(UserEntity user);
 }

@@ -13,8 +13,9 @@ public class LoginUserDetails implements UserDetails {
 
     private final AuthEntity user;
 
-    public LoginUserDetails(AuthEntity user) {
+    public LoginUserDetails(AuthEntity user, String role) {
         this.user = user;
+
     }
 
     // ユーザーが持つ権限を返す
