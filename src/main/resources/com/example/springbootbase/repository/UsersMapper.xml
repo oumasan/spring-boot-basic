@@ -10,9 +10,15 @@
         INSERT INTO users (first_name, last_name, address) VALUES (#{firstName}, #{lastName}, #{address});
     </insert>
     <update id="update" parameterType="com.example.springbootbase.entity.UserEntity">
-        UPDATE users SET first_name = #{firstName}, last_name = #{lastName}, address = #{address} WHERE id = #{id};
+        UPDATE users SET
+        version = version + 1,
+        first_name = #{firstName},
+        last_name = #{lastName},
+        address = #{address}
+        WHERE id = #{id}
+        AND version = #{version};
     </update>
     <delete id="delete" parameterType="com.example.springbootbase.entity.UserEntity">
-        DELETE FROM users WHERE id = #{id}
+        DELETE FROM users WHERE id = #{id} AND version = #{version};
     </delete>
 </mapper>

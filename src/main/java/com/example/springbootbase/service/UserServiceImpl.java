@@ -1,6 +1,7 @@
 package com.example.springbootbase.service;
 
 import com.example.springbootbase.entity.UserEntity;
+import com.example.springbootbase.exception.ExclusionException;
 import com.example.springbootbase.model.BaseResponseModel;
 import com.example.springbootbase.model.UserModel;
 import com.example.springbootbase.repository.UsersMapper;
@@ -9,6 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -42,17 +44,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(rollbackForClassName={"Exception"})
     public BaseResponseModel updateUser(UserModel user) {
-        // TODO 排他制御
         UserEntity userEntity = modelMapper.map(user , UserEntity.class);
-        usersMapper.update(userEntity);
+        int updatedCount = usersMapper.update(userEntity);
+        // 排他制御
+        if (updatedCount == 0) {
+            throw new ExclusionException();
+        }
         return new BaseResponseModel();
     }
 
     @Override
+    @Transactional(rollbackForClassName={"Exception"})
     public BaseResponseModel deleteUser(UserModel user) {
         UserEntity userEntity = modelMapper.map(user, UserEntity.class);
-        usersMapper.delete(userEntity);
+        int deletedCount = usersMapper.delete(userEntity);
+        // 排他制御
+        if (deletedCount == 0) {
+            throw new ExclusionException();
+        }
         return new BaseResponseModel();
     }
 }

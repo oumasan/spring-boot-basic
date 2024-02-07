@@ -6,6 +6,7 @@ USE demo_database;
 DROP TABLE IF EXISTS users;
 CREATE TABLE users(
   id INT(10) NOT NULL AUTO_INCREMENT,
+  version INT NOT NULL DEFAULT 1,
   first_name VARCHAR(50) NOT NULL,
   last_name VARCHAR(50) NOT NULL,
   address VARCHAR(100) NOT NULL,

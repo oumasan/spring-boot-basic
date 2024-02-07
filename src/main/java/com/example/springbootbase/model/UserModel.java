@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 public class UserModel {
 
     private Integer id = null;
+    private Integer version = null;
     @NotNull
     @Size(min= 1, max = 50, message = "firstNameは1～50桁を入力してください")
     private String firstName = "";
@@ -31,6 +32,14 @@ public class UserModel {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public String getFirstName() {

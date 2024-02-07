@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 public class UserEntity {
 
     private Integer id = null;
+    private Integer version = null;
     private String firstName = "";
     private String lastName = "";
     private String address = "";
@@ -19,6 +20,14 @@ public class UserEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public String getFirstName() {
